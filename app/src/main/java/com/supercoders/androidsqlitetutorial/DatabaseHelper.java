@@ -28,6 +28,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);
     }
 
+
+
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         String table_query="CREATE TABLE if not EXISTS "+TABLE_NAME+
@@ -45,7 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
-    }
+     }
 
     public void AddStudnet(StudentModel studentModel){
         SQLiteDatabase db=this.getWritableDatabase();
@@ -94,7 +97,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(name,studentModel.getName());
         contentValues.put(email,studentModel.getEmail());
         contentValues.put(phone,studentModel.getPhone());
-        contentValues.put(dob,studentModel.getName());
+        contentValues.put(dob,studentModel.getDob());
         return db.update(TABLE_NAME,contentValues,ID+"=?",new String[]{String.valueOf(studentModel.getId())});
 
     }
